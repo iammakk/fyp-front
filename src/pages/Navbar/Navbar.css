@@ -1,0 +1,35 @@
+.navbar {
+  display: flex;
+
+  background-color: black;
+  padding: 8px 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.navlogo img {
+  width: 80px;
+}
+.routes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.routes h3 {
+  color: white;
+}
+.nav-btn {
+  background-color: white !important;
+  border-radius: 50% !important;
+  padding: 10px !important;
+  min-width: 100% !important;
+}
+
+.routes a{
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+}
