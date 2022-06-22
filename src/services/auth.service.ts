@@ -1,47 +1,44 @@
 import { modalActions } from "redux/slices/modal";
 import { formLoaderActions } from "redux/slices/formLoader";
-import { NavigateFunction ,Navigate, useNavigate} from "react-router-dom";
+import { NavigateFunction, Navigate, useNavigate } from "react-router-dom";
 import http from "./http.service";
 import { AppDispatch } from "redux/store";
 import Promisable from "./promisable.service";
 import { authActions } from "redux/slices/auth";
 import { log } from "../utils/logger.util";
+import { loaderActions } from "redux/slices/loader";
 
 const url = "/auth";
 
 const AuthService = {
-
   login: async (data: any, dispatch?: AppDispatch) => {
-    dispatch?.(authActions.setLoading(true));
+    dispatch?.(loaderActions.setLoading(true));
 
     const [success, error]: any = await Promisable.asPromise(
       http.post(`${url}/login`, data)
     );
 
     if (success) {
-      
       const { token } = success.data.data;
 
       dispatch?.(authActions.setUser(data));
       localStorage.setItem("token", `Bearer ${token}`);
     }
 
-    dispatch?.(authActions.setLoading(false));
+    dispatch?.(loaderActions.setLoading(false));
     return [success, error];
   },
 
-  logout: (    navigate?: NavigateFunction,dispatch?: AppDispatch) => {
-    log("log")
+  logout: (navigate?: NavigateFunction, dispatch?: AppDispatch) => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-   navigate?.("/")
+    navigate?.("/");
 
     dispatch?.(authActions.logout());
     dispatch?.(authActions.setUser(null));
   },
 
   createUser: async (
-    
     data: any,
     dispatch?: AppDispatch,
     navigate?: NavigateFunction
@@ -52,14 +49,11 @@ const AuthService = {
     const [success, error]: any = await Promisable.asPromise(
       http.post(`${url}/register`, data)
     );
-    
+
     if (success) {
-  
-        const { token } = success.data.data;
-       dispatch?.(authActions.setUser(data));
+      const { token } = success.data.data;
+      dispatch?.(authActions.setUser(data));
       localStorage.setItem("token", `Bearer ${token}`);
-    
-          
     }
 
     dispatch?.(formLoaderActions.setLoading(false));

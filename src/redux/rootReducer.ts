@@ -4,6 +4,7 @@ import { reducer as formReducer } from "redux-form";
 import authReducer from "./slices/auth";
 import modalReducer from "./slices/modal";
 import loaderReducer from "./slices/loader";
+import formLoaderReducer from './slices/formLoader/formLoaderSlice';
 
 
 const appReducer = combineReducers({
@@ -12,6 +13,7 @@ const appReducer = combineReducers({
   auth: authReducer,
   modal: modalReducer,
   loader: loaderReducer,
+  formLoader:formLoaderReducer
 
 });
 

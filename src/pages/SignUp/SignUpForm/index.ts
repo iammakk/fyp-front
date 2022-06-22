@@ -1,6 +1,7 @@
 // import { email, required } from "utils/validate.util";
 import InputRedux from "components/molecules/InputRedux";
 import { ReduxFormField } from "components/molecules/ReduxFormFields/index";
+import { email, password, required } from "utils/validate.util";
 
 export { default } from "./SignUpForm";
 
@@ -8,7 +9,7 @@ export const fields: ReduxFormField[] = [
   {
     name: "firstName",
     label: "First Name",
-    // validate: [required, email],
+    validate: [required],
     component: InputRedux,
     cellProps: { lg: 12 },
     // InputProps: { type: "email" },
@@ -16,7 +17,7 @@ export const fields: ReduxFormField[] = [
   {
     name: "lastName",
     label: "Last Name",
-    // validate: [required, email],
+    validate: [required],
     component: InputRedux,
     cellProps: { lg: 12 },
     // InputProps: { type: "email" },
@@ -24,7 +25,7 @@ export const fields: ReduxFormField[] = [
   {
     name: "email",
     label: "Email",
-    // validate: [required, email],
+    validate: [required, email],
     component: InputRedux,
     cellProps: { lg: 12 },
     InputProps: { type: "email" },
@@ -32,15 +33,15 @@ export const fields: ReduxFormField[] = [
   {
     name: "password",
     label: "Password",
-    // validate: [required],
+    validate: [required, password],
     component: InputRedux,
     cellProps: { lg: 12 },
     InputProps: { showIcon: true, type: "password" },
   },
   {
-    name: "cpassword",
+    name: "confirm_password",
     label: "Confirm Password",
-    // validate: [required],
+    validate: [required, password],
     component: InputRedux,
     cellProps: { lg: 12 },
     InputProps: { showIcon: true, type: "password" },
