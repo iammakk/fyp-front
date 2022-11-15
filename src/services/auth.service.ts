@@ -43,13 +43,14 @@ const AuthService = {
     dispatch?: AppDispatch,
     navigate?: NavigateFunction
   ) => {
+    console.log(data)
     dispatch?.(formLoaderActions.setLoading(true));
 
     http.setJWT();
     const [success, error]: any = await Promisable.asPromise(
       http.post(`${url}/register`, data)
     );
-
+console.log(error)
     if (success) {
       const { token } = success.data.data;
       dispatch?.(authActions.setUser(data));

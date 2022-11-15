@@ -16,6 +16,7 @@ export default function SignUp() {
   const loading = useAppSelector((state) => state.auth.loading);
 
   const handleSubmit = (values: any) => {
+
     let data = { ...values };
 
     delete data.confirm_password;
